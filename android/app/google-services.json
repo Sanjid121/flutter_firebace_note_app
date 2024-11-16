@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "210134040034",
+    "project_id": "firebach1",
+    "storage_bucket": "firebach1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:210134040034:android:7dfbdb0ab22fe8ca068dbb",
+        "android_client_info": {
+          "package_name": "com.example.flutter_firebace1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "210134040034-voag8k5h11b42tcvu3omqeh54mhvkd5f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.flutter_firebace1",
+            "certificate_hash": "84a71baffe509f368301c3e3b3ed6b88d0b4c96b"
+          }
+        },
+        {
+          "client_id": "210134040034-ub8tvqpafipnpo1jrmjlas1a0aaj68si.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOSBS7my2rYpBrJUcn8AViBdnvh_2A3o0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "210134040034-ub8tvqpafipnpo1jrmjlas1a0aaj68si.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
