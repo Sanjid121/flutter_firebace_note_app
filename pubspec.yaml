@@ -49,7 +49,7 @@ dependencies:
   uuid:
   path_provider:
   fluttertoast: 
-  google_nav_bar: 
+
 
 dev_dependencies:
   flutter_test:

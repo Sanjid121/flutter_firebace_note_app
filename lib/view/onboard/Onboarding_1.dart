@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_firebace1/view/onboard/Onboarding_2-Get%20Started.dart';
 import 'package:flutter_firebace1/view/widgets/widget.dart';
 
-import 'package:shared_preferences/shared_preferences.dart';
 
 class Page1 extends StatefulWidget {
   const Page1({Key? key}) : super(key: key);

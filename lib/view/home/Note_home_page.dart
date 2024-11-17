@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebace1/view/widgets/widget.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 
 class NoteHomePage extends StatefulWidget {
   const NoteHomePage({Key? key}) : super(key: key);
@@ -8,6 +7,8 @@ class NoteHomePage extends StatefulWidget {
   @override
   _NoteHomePageState createState() => _NoteHomePageState();
 }
+
+final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
 class _NoteHomePageState extends State<NoteHomePage> {
   @override
@@ -101,29 +102,47 @@ class _NoteHomePageState extends State<NoteHomePage> {
             Padding(
               padding: const EdgeInsets.only(left: 10),
               child: Container(
-                child: IconButton(onPressed: (){}, icon:Icon(Icons.grid_view_outlined,size: 50,) )
+                  child: IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.grid_view_outlined,
+                        size: 50,
+                      ))),
+            ),
+            SizedBox(
+              width: 100,
+            ),
+            InkWell(
+              onTap: () {},
+              child: Container(
+                height: 50,
+                width: 50,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  color: Color(0xFFF2CC0EB),
+                ),
+                child: Icon(
+                  Icons.add,
+                  size: 40,
+                  color: Colors.white,
+                ),
               ),
             ),
-            SizedBox(width: 100,),
-          InkWell(
-            onTap: () {
-              
-            },
-            child: Container(
-              height: 50,
-              width: 50,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                color: Color(0xFFF2CC0EB),
-              ),
-              child: Icon(Icons.add ,size: 40, color: Colors.white,),
+            SizedBox(
+              width: 100,
             ),
-          ), SizedBox(width: 100,),
-         IconButton(onPressed: (){}, icon:Icon(Icons.person,size: 50,) )
+            IconButton(
+                onPressed: () {
+
+                },
+                icon: Icon(
+                  Icons.person,
+                  size: 50,
+                ))
           ],
         ),
       ),
-     
+    
     );
   }
 }

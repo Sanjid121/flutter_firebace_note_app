@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_firebace1/DatabaseService/authService.dart';
 import 'package:flutter_firebace1/view/auth/Sign_In.dart';
-import 'package:flutter_firebace1/view/home/Home_v2.dart';
 import 'package:flutter_firebace1/view/home/note_home_page.dart';
 
 import 'package:fluttertoast/fluttertoast.dart';
