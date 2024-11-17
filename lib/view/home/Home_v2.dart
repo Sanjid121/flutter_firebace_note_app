@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_firebace1/controller/authController.dart';
-
-import 'package:get/get.dart';
 import '../widgets/widget.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:pinput/pinput.dart';
@@ -69,6 +66,7 @@ class _HomePageState extends State<HomePage> {
                 Padding(
                   padding: const EdgeInsets.only(left: 27, right: 10, top: 57),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
                         child: Column(
@@ -81,12 +79,10 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 180),
-                        child: Icon(
-                          Icons.search,
-                          size: 24,
-                        ),
+                      Spacer(),
+                      Icon(
+                        Icons.search,
+                        size: 24,
                       ),
                       SizedBox(
                         width: 15,
@@ -110,8 +106,7 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(
                   height: 20,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 27, right: 10),
+                Center(
                   child: Container(
                     child: Stack(
                       alignment: Alignment.center,
@@ -482,14 +477,13 @@ class _HomePageState extends State<HomePage> {
         color: Color(0xFFFFFFFF),
         height: 85,
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(
-              width: 25,
-            ),
+       
             InkWell(
-              onTap: () async {
-                final authCtr = Get.find<Authcontroller>();
-                await authCtr.userLogout(context);
+              onTap: () {
+          
                 ScaffoldMessenger.of(context)
                     .showSnackBar(SnackBar(content: Text('1 num ok')));
               },
@@ -499,9 +493,7 @@ class _HomePageState extends State<HomePage> {
                 width: 22,
               ),
             ),
-            SizedBox(
-              width: 45,
-            ),
+         
             InkWell(
               onTap: () {
                 ScaffoldMessenger.of(context)
@@ -514,9 +506,7 @@ class _HomePageState extends State<HomePage> {
                 color: Color(0xFFF7E8CA0),
               ),
             ),
-            SizedBox(
-              width: 45,
-            ),
+         
             InkWell(
               onTap: () {
                 ScaffoldMessenger.of(context)
@@ -535,17 +525,13 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            SizedBox(
-              width: 45,
-            ),
+           
             Image.network(
               'https://cdn-icons-png.flaticon.com/128/1370/1370907.png',
               height: 20,
               width: 20,
             ),
-            SizedBox(
-              width: 45,
-            ),
+         
             Image.network(
               'https://cdn-icons-png.flaticon.com/128/17847/17847650.png',
               height: 20,

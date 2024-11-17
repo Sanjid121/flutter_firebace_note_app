@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_firebace1/view/home/Drowar.dart';
 import 'package:flutter_firebace1/view/widgets/widget.dart';
 
 class NoteHomePage extends StatefulWidget {
@@ -8,12 +9,11 @@ class NoteHomePage extends StatefulWidget {
   _NoteHomePageState createState() => _NoteHomePageState();
 }
 
-final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
 class _NoteHomePageState extends State<NoteHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drowar(),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
@@ -50,13 +50,11 @@ class _NoteHomePageState extends State<NoteHomePage> {
             Center(
               child: Container(
                 color: Color(0xFFFF5F6FB),
-                width: 400,
+                width: 350,
                 child: TextField(
                   cursorColor: Colors.black,
                   decoration: InputDecoration(
-                      fillColor: Colors.black,
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5)),
+                      border: InputBorder.none,
                       prefixIcon: Icon(Icons.search),
                       labelText: 'Search '),
                 ),
@@ -72,46 +70,62 @@ class _NoteHomePageState extends State<NoteHomePage> {
             SizedBox(
               height: 20,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                custom_NOTE_Card(
-                    color: 0xFFFE8F5FB, Health: 'Health', may: '20 may'),
-                custom_NOTE_Card(
-                    color: 0xFFFFFF4E0, Health: 'Food', may: '15 may')
-              ],
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  InkWell(
+                    onTap: () {},
+                    child: custom_NOTE_Card(
+                        color: 0xFFFE8F5FB, Health: 'Health', may: '20 may'),
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    child: custom_NOTE_Card(
+                        color: 0xFFFFFF4E0, Health: 'Food', may: '15 may'),
+                  )
+                ],
+              ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                custom_NOTE_Card(
-                    color: 0xFFFFFE9F5, Health: 'Shop list', may: '20 may'),
-                custom_NOTE_Card(
-                    color: 0xFFFF4F5F7, Health: '+ Add new', may: '20 may'),
-              ],
-            )
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  InkWell(
+                    onTap: () {
+                   
+                    },
+                    child: custom_NOTE_Card(
+                        color: 0xFFFFFE9F5, Health: 'Shop list', may: '20 may'),
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    child: custom_NOTE_Card(
+                        color: 0xFFFF4F5F7, Health: '+ Add new', may: '20 may'),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-        color: Colors.black12,
+        color: Colors.white70,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 10),
-              child: Container(
-                  child: IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.grid_view_outlined,
-                        size: 50,
-                      ))),
-            ),
-            SizedBox(
-              width: 100,
-            ),
+            Container(
+                child: IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.grid_view_outlined,
+                      size: 50,
+                    ))),
             InkWell(
               onTap: () {},
               child: Container(
@@ -128,21 +142,20 @@ class _NoteHomePageState extends State<NoteHomePage> {
                 ),
               ),
             ),
-            SizedBox(
-              width: 100,
-            ),
-            IconButton(
-                onPressed: () {
-
-                },
-                icon: Icon(
-                  Icons.person,
-                  size: 50,
-                ))
+            Center(
+                child: Builder(
+              builder: (context) => IconButton(
+                  onPressed: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                  icon: Icon(
+                    Icons.person,
+                    size: 50,
+                  )),
+            ))
           ],
         ),
       ),
-    
     );
   }
 }
