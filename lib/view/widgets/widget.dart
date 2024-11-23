@@ -217,11 +217,12 @@ Widget custombox(
   );
 }
 
-Widget custom_NOTE_Card({int ?color,String ? Health,String ? may  }) {
-  return Padding(
+Widget custom_NOTE_Card(double height, int maxLine,
+    {int? color, String? Health, String? may , }) {
+  return Padding( 
     padding: const EdgeInsets.all(8.0),
     child: Container(
-      height: 230,
+      height: height,
       width: 200,
       child: Card(
         color: Color(color!),
@@ -236,6 +237,7 @@ Widget custom_NOTE_Card({int ?color,String ? Health,String ? may  }) {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
+                    maxLines: maxLine,
                     Health!,
                     style: TextStyle(
                         fontFamily: 'Urbanist',

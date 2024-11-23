@@ -14,7 +14,8 @@ class Authcontroller extends GetxController {
   TextEditingController name = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
-
+  ScrollController scrollController = ScrollController();
+  final scrollPosition = 0.0.obs;
   final aggrement = false.obs;
   final address = "".obs;
   final profile = "".obs;
@@ -69,9 +70,9 @@ class Authcontroller extends GetxController {
       var res = await authService.Signin(email.text, password.text);
       if (!res.user!.uid.isEmpty) {
         await authSave();
-        Navigator.push(ctx, MaterialPageRoute(builder: (_) =>NoteHomePage() ));
+        Navigator.push(ctx, MaterialPageRoute(builder: (_) => NoteHomePage()));
         email.clear();
-        password.clear(); 
+        password.clear();
       }
     } catch (e) {
       print(e);
@@ -114,6 +115,15 @@ class Authcontroller extends GetxController {
     print(account.authHeaders);
     print(account.authentication);
     print(account.serverAuthCode);
-   
+  }
+
+  @override
+  void onInit() {
+    scrollController.addListener(() {
+      scrollPosition.value = scrollController.position.pixels;
+      print(scrollPosition.value);
+
+    });
+    super.onInit();
   }
 }

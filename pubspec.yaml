@@ -49,6 +49,7 @@ dependencies:
   uuid:
   path_provider:
   fluttertoast: 
+  flutter_staggered_grid_view: 
 
 
 dev_dependencies:
