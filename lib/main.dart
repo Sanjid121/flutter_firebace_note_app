@@ -7,6 +7,7 @@ import 'package:flutter_firebace1/view/onboard/splash.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+ 
   await Firebase.initializeApp();
 
   ControllerInit.Init();

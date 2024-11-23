@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebace1/DatabaseService/authService.dart';
 import 'package:flutter_firebace1/controller/authController.dart';
+import 'package:flutter_firebace1/controller/note_controlar.dart';
 import 'package:flutter_firebace1/view/home/Drowar.dart';
 import 'package:flutter_firebace1/view/home/add%20note.dart';
 import 'package:flutter_firebace1/view/widgets/widget.dart';
@@ -32,7 +33,13 @@ MaxLine(int index) {
 }
 
 class _NoteHomePageState extends State<NoteHomePage> {
-  final notectr = Get.find<Authcontroller>();
+  final notectr = Get.find<NoteControlar>();
+    void initState() {
+    Future.delayed(Duration(microseconds: 0), () async {
+      await nctr.noteget();
+    });
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Obx(() {
@@ -109,11 +116,11 @@ class _NoteHomePageState extends State<NoteHomePage> {
             ),
          
             Expanded(
-              child: MasonryGridView.builder(
+              child: notectr.isloding.isTrue? Center(child: CircularProgressIndicator(),): MasonryGridView.builder(
                   controller: notectr.scrollController,
                   gridDelegate: SliverSimpleGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2),
-                  itemCount: 4,
+                  itemCount: notectr.notedata.length,
                   itemBuilder: (_, index) {
                     return GestureDetector(
                       onTap: () {
@@ -126,7 +133,7 @@ class _NoteHomePageState extends State<NoteHomePage> {
                         child: custom_NOTE_Card(
                             ((index % 4 + 1) * 44 + 200), MaxLine(index),
                             color: 0xFFFE8F5FB,
-                            Health: 'Health ${index}',
+                            Health: notectr.notedata[index]['notes'],
                             may: '20 may'),
                       ),
                     );
@@ -147,7 +154,31 @@ class _NoteHomePageState extends State<NoteHomePage> {
                         Icons.grid_view_rounded,
                         size: 35,
                       ))),
-            
+                      FloatingActionButton(
+                  backgroundColor: Color.fromARGB(255, 77, 190, 255),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(100)),
+                  onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (_) => AddNote()));
+                  },
+                  elevation: 10,
+                  child: Icon(
+                    Icons.add,
+                    size: 30,
+                    color: Colors.white,
+                  ),
+                ),
+              Center(
+                  child: Builder(
+                builder: (context) => IconButton(
+                    onPressed: () {
+                      Scaffold.of(context).openDrawer();
+                    },
+                    icon: Icon(
+                      Icons.person_2_rounded,
+                      size: 40,
+                    )),
+              ))
             ],
           ),
         ),

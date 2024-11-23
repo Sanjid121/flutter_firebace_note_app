@@ -14,8 +14,7 @@ class Authcontroller extends GetxController {
   TextEditingController name = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
-  ScrollController scrollController = ScrollController();
-  final scrollPosition = 0.0.obs;
+
   final aggrement = false.obs;
   final address = "".obs;
   final profile = "".obs;
@@ -60,16 +59,20 @@ class Authcontroller extends GetxController {
     }
   }
 
-  authSave() async {
+  authSave(UserCredential user) async {
     SharedPreferences sp = await SharedPreferences.getInstance();
+    sp.setString("email", user.user!.email!);
+    sp.setString("uid", user.user!.uid);
     sp.setBool("isAuth", true);
+
+
   }
 
   Future UserSignin(BuildContext ctx) async {
     try {
       var res = await authService.Signin(email.text, password.text);
       if (!res.user!.uid.isEmpty) {
-        await authSave();
+        await authSave(res);
         Navigator.push(ctx, MaterialPageRoute(builder: (_) => NoteHomePage()));
         email.clear();
         password.clear();
@@ -115,15 +118,5 @@ class Authcontroller extends GetxController {
     print(account.authHeaders);
     print(account.authentication);
     print(account.serverAuthCode);
-  }
-
-  @override
-  void onInit() {
-    scrollController.addListener(() {
-      scrollPosition.value = scrollController.position.pixels;
-      print(scrollPosition.value);
-
-    });
-    super.onInit();
   }
 }
