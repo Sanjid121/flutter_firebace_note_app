@@ -135,8 +135,7 @@ class _NoteHomePageState extends State<NoteHomePage> {
                       itemBuilder: (_, index) {
                         return GestureDetector(
                           onTap: () {
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (_) => DetailsPage()));
+                          
                           },
                           child: Container(
                             margin: index == 1
@@ -146,8 +145,9 @@ class _NoteHomePageState extends State<NoteHomePage> {
                                 ((index % 4 + 1) * 44 + 200), MaxLine(index),
                                 color: notectr.notedata[index]['color'],
                                 Discrepstion: notectr.notedata[index]['title'],
+                                
                                 Health: notectr.notedata[index]['note'],
-                                may: '20 may'),
+                                may: notectr.formatTimestamp(notectr.notedata[index]['time'])),
                           ),
                         );
                       }),

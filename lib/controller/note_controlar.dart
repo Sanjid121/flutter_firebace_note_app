@@ -3,9 +3,10 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebace1/DatabaseService/note_searvice.dart';
-import 'package:flutter_firebace1/view/auth/details_page.dart';
+import 'package:flutter_firebace1/view/home/add%20note.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class NoteControlar extends GetxController {
@@ -49,7 +50,18 @@ class NoteControlar extends GetxController {
       Fluttertoast.showToast(msg: 'Enter titile');
     }
   }
+  String formatTimestamp(Timestamp timestamp) {
+   
+    DateTime dateTime = timestamp.toDate();
 
+    
+    String formattedTime =
+        DateFormat('hh:mm a').format(dateTime);
+    String formattedDate = DateFormat('d MMM').format(dateTime); 
+
+ 
+    return '$formattedTime $formattedDate';
+  }
   @override
   void onInit() {
     scrollController.addListener(() {

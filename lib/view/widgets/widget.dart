@@ -260,13 +260,22 @@ Widget custom_NOTE_Card(double height, int maxLine,
                   SizedBox(
                     height: 10,
                   ),
-                  Text(
-                    may!,
-                    style: TextStyle(
-                        fontFamily: 'Urbanist',
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                        color: Color(0xFFF000000)),
+    
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Center(
+                        child: Text(
+                          may!,
+                          style: TextStyle(
+                              fontFamily: 'Urbanist',
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xFFF000000)),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
