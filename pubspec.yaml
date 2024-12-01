@@ -50,6 +50,7 @@ dependencies:
   path_provider:
   fluttertoast: 
   flutter_staggered_grid_view: 
+  flutter_colorpicker: 
 
 
 dev_dependencies:

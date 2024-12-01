@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_firebace1/controller/note_controlar.dart';
+import 'package:flutter_firebace1/view/auth/details_page.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AddNote extends StatefulWidget {
   const AddNote({Key? key}) : super(key: key);
@@ -8,13 +11,17 @@ class AddNote extends StatefulWidget {
   @override
   _AddNoteState createState() => _AddNoteState();
 }
+Color pickerColor = Color(0xff443a49);
+
+Color currentColor = Color(0xff443a49);
 
 final nctr = Get.find<NoteControlar>();
 
 class _AddNoteState extends State<AddNote> {
+    void changeColor(Color color) {
+    setState(() => pickerColor = color);
+  }
   @override
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +56,7 @@ class _AddNoteState extends State<AddNote> {
                             fontSize: 16,
                             color: Colors.black),
                         textAlignVertical: TextAlignVertical.top,
-                        maxLines: 8,
+                        maxLines: 5,
                         decoration: InputDecoration(
                             hintText: 'Write your note',
 
@@ -77,6 +84,69 @@ class _AddNoteState extends State<AddNote> {
                 Icons.check_sharp,
                 size: 30,
                 color: Colors.white,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 100),
+            child: FloatingActionButton(
+              backgroundColor: Color.fromARGB(255, 226, 230, 5),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(100)),
+              onPressed: () async {
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        backgroundColor: pickerColor,
+                        title: const Text('Pick a color!'),
+                        content: SingleChildScrollView(
+                          // child: ColorPicker(
+                          //   pickerColor:pickerColor ,
+                          //   onColorChanged: changeColor,
+                          // ),
+                          // Use Material color picker:
+                          //
+                          // child: MaterialPicker(
+                          //   pickerColor: pickerColor,
+                          //   onColorChanged: changeColor,
+                          //  // only on portrait mode
+                          // ),
+                          //
+                          // Use Block color picker:
+                          //
+                          child: BlockPicker(
+                            pickerColor: currentColor,
+                            onColorChanged: changeColor,
+                          ),
+                          //
+                          // child: MultipleChoiceBlockPicker(
+                          //   pickerColors: currentColors,
+                          //   onColorsChanged: changeColors,
+                          // ),
+                        ),
+                        actions: <Widget>[
+                          ElevatedButton(
+                            child: Text(
+                              'Got it',
+                              style: TextStyle(color: pickerColor),
+                            ),
+                            onPressed: () async {
+                              setState(() => currentColor = pickerColor);
+                              Navigator.of(context).pop();
+            
+                              print('object');
+                            },
+                          ),
+                        ],
+                      );
+                    });
+              },
+              elevation: 10,
+              child: Icon(
+                Icons.color_lens_rounded,
+                size: 30,
+                color: Colors.white70,
               ),
             ),
           ),

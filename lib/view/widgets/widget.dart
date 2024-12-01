@@ -218,8 +218,8 @@ Widget custombox(
 }
 
 Widget custom_NOTE_Card(double height, int maxLine,
-    {int? color, String? Health, String? may , }) {
-  return Padding( 
+    {int? color, String? Health, String? may, String? Discrepstion}) {
+  return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Container(
       height: height,
@@ -245,41 +245,12 @@ Widget custom_NOTE_Card(double height, int maxLine,
                         fontWeight: FontWeight.w700,
                         color: Color(0xFFF000000)),
                   ),
-                  SizedBox(height: 15,),
-                  Text(
-                    'Lorem ipsum dolor sit',
-                    style: TextStyle(
-                        fontFamily: 'Urbanist',
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xFFF000000)),
+                  SizedBox(
+                    height: 15,
                   ),
                   Text(
-                    'amet, consectatur',
-                    style: TextStyle(
-                        fontFamily: 'Urbanist',
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xFFF000000)),
-                  ),
-                  Text(
-                    'adipiscing elit. Donec',
-                    style: TextStyle(
-                        fontFamily: 'Urbanist',
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xFFF000000)),
-                  ),
-                  Text(
-                    'fermentum in libero sit',
-                    style: TextStyle(
-                        fontFamily: 'Urbanist',
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xFFF000000)),
-                  ),
-                  Text(
-                    'amet dignissim.',
+                    Discrepstion != null ? Discrepstion : 'no discrepstion',
+                    maxLines: (3 + maxLine),
                     style: TextStyle(
                         fontFamily: 'Urbanist',
                         fontSize: 14,

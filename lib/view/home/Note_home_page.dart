@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_firebace1/DatabaseService/authService.dart';
-import 'package:flutter_firebace1/controller/authController.dart';
 import 'package:flutter_firebace1/controller/note_controlar.dart';
+import 'package:flutter_firebace1/view/auth/details_page.dart';
 import 'package:flutter_firebace1/view/home/Drowar.dart';
+import 'package:flutter_firebace1/view/home/Home_v2.dart';
 import 'package:flutter_firebace1/view/home/add%20note.dart';
 import 'package:flutter_firebace1/view/widgets/widget.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class NoteHomePage extends StatefulWidget {
   const NoteHomePage({Key? key}) : super(key: key);
@@ -34,12 +35,15 @@ MaxLine(int index) {
 
 class _NoteHomePageState extends State<NoteHomePage> {
   final notectr = Get.find<NoteControlar>();
-    void initState() {
+  void initState() {
     Future.delayed(Duration(microseconds: 0), () async {
       await nctr.noteget();
+      print('chak------');
     });
     super.initState();
   }
+
+
   @override
   Widget build(BuildContext context) {
     return Obx(() {
@@ -91,19 +95,22 @@ class _NoteHomePageState extends State<NoteHomePage> {
             Center(
               child: Container(
                 color: Color(0xFFFF5F6FB),
-  
                 width: 350,
                 child: TextField(
-                  style: TextStyle(fontFamily: 'Urbanist',fontWeight: FontWeight.w500,fontSize: 18,color: Colors.blue),
-
+                  style: TextStyle(
+                      fontFamily: 'Urbanist',
+                      fontWeight: FontWeight.w500,
+                      fontSize: 18,
+                      color: Colors.blue),
                   textAlignVertical: TextAlignVertical.bottom,
                   cursorColor: Colors.black,
                   decoration: InputDecoration(
-                    isDense: true,
-                
+                      isDense: true,
                       border: InputBorder.none,
                       prefixIcon: Icon(Icons.search),
-                      labelText: 'Search ' ,labelStyle: TextStyle(fontFamily: 'Urbanist',fontWeight: FontWeight.w400)),
+                      labelText: 'Search ',
+                      labelStyle: TextStyle(
+                          fontFamily: 'Urbanist', fontWeight: FontWeight.w400)),
                 ),
               ),
             ),
@@ -114,30 +121,36 @@ class _NoteHomePageState extends State<NoteHomePage> {
               padding: const EdgeInsets.only(left: 30),
               child: text('NOTE', 24, FontWeight.w700, 0xFFF000000),
             ),
-         
             Expanded(
-              child: notectr.isloding.isTrue? Center(child: CircularProgressIndicator(),): MasonryGridView.builder(
-                  controller: notectr.scrollController,
-                  gridDelegate: SliverSimpleGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2),
-                  itemCount: notectr.notedata.length,
-                  itemBuilder: (_, index) {
-                    return GestureDetector(
-                      onTap: () {
-                        print('hello');
-                      },
-                      child: Container(
-                        margin: index == 1
-                            ? EdgeInsets.only(top: 30)
-                            : EdgeInsets.only(top: 0),
-                        child: custom_NOTE_Card(
-                            ((index % 4 + 1) * 44 + 200), MaxLine(index),
-                            color: 0xFFFE8F5FB,
-                            Health: notectr.notedata[index]['notes'],
-                            may: '20 may'),
-                      ),
-                    );
-                  }),
+              child: notectr.isloding.isTrue
+                  ? Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : MasonryGridView.builder(
+                      controller: notectr.scrollController,
+                      gridDelegate:
+                          SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2),
+                      itemCount: notectr.notedata.length,
+                      itemBuilder: (_, index) {
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (_) => DetailsPage()));
+                          },
+                          child: Container(
+                            margin: index == 1
+                                ? EdgeInsets.only(top: 30)
+                                : EdgeInsets.only(top: 0),
+                            child: custom_NOTE_Card(
+                                ((index % 4 + 1) * 44 + 200), MaxLine(index),
+                                color: notectr.notedata[index]['color'],
+                                Discrepstion: notectr.notedata[index]['title'],
+                                Health: notectr.notedata[index]['note'],
+                                may: '20 may'),
+                          ),
+                        );
+                      }),
             ),
           ],
         ),
@@ -149,39 +162,46 @@ class _NoteHomePageState extends State<NoteHomePage> {
             children: [
               Container(
                   child: IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (_) => HomePage()));
+                      },
                       icon: Icon(
                         Icons.grid_view_rounded,
                         size: 35,
                       ))),
-                      FloatingActionButton(
-                  backgroundColor: Color.fromARGB(255, 77, 190, 255),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(100)),
-                  onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (_) => AddNote()));
-                  },
-                  elevation: 10,
-                  child: Icon(
-                    Icons.add,
-                    size: 30,
-                    color: Colors.white,
-                  ),
+              FloatingActionButton(
+                backgroundColor: Color.fromARGB(255, 77, 190, 255),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(100)),
+                onPressed: () {
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (_) => AddNote()));
+                },
+                elevation: 10,
+                child: Icon(
+                  Icons.add,
+                  size: 30,
+                  color: Colors.white,
                 ),
+              ),
               Center(
                   child: Builder(
                 builder: (context) => IconButton(
                     onPressed: () {
                       Scaffold.of(context).openDrawer();
+                      
                     },
                     icon: Icon(
                       Icons.person_2_rounded,
                       size: 40,
                     )),
-              ))
+              )),
+
             ],
           ),
         ),
+        
       );
     });
   }

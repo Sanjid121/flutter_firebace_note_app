@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebace1/DatabaseService/note_searvice.dart';
+import 'package:flutter_firebace1/view/auth/details_page.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -8,6 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class NoteControlar extends GetxController {
   TextEditingController textEditingController = TextEditingController();
   TextEditingController notectr = TextEditingController();
+
 
   ScrollController scrollController = ScrollController();
   final scrollPosition = 0.0.obs;
@@ -27,13 +31,18 @@ class NoteControlar extends GetxController {
   Future Notedatasave(BuildContext ctx) async {
     if (notectr.text.length > 1) {
       SharedPreferences sp = await SharedPreferences.getInstance();
+      
       var data = {
         'userid': sp.getString('uid'),
-        'title': notectr.text,
-        'note': textEditingController.text,
-        'time': FieldValue.serverTimestamp()
+        'note': notectr.text,
+        'title': textEditingController.text,
+        'time': FieldValue.serverTimestamp(),
+        'color':pickerColor.value
       };
       await noteSearvice.Notesave(data);
+      await noteget();
+      notectr.clear();
+      textEditingController.clear();
       Fluttertoast.showToast(msg: 'Note saved');
       Navigator.pop(ctx);
     } else {

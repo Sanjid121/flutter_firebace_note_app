@@ -31,7 +31,7 @@ class _SplashState extends State<Splash> {
       if (sp.getBool("isAuth") != null && sp.getBool("isAuth") == true) {
         Navigator.push(context, MaterialPageRoute(builder: (_) => NoteHomePage()));
       } else {
-        Navigator.push(context, MaterialPageRoute(builder: (_) => LoginPage()));
+        Navigator.push(context, MaterialPageRoute(builder: (_) =>NoteHomePage()));
       }
     }
   }

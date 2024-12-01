@@ -15,7 +15,7 @@ class NoteSearvice {
     Future<List<QueryDocumentSnapshot>> noteGet(String usarid) async {
     QuerySnapshot snapshot = await db
         .collection('note',)
-        .where('usarid', isEqualTo: usarid)
+        .where('userid', isEqualTo: usarid)
         .orderBy('time', descending: true)
         .snapshots().first;
 
