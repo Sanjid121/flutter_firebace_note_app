@@ -64,8 +64,6 @@ class Authcontroller extends GetxController {
     sp.setString("email", user.user!.email!);
     sp.setString("uid", user.user!.uid);
     sp.setBool("isAuth", true);
-
-
   }
 
   Future UserSignin(BuildContext ctx) async {
@@ -106,6 +104,7 @@ class Authcontroller extends GetxController {
       (Route<dynamic> route) => false,
     );
   }
+
 
   GoogleAuth() async {
     GoogleSignIn googleSignIn = GoogleSignIn();

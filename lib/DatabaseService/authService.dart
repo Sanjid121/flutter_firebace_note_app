@@ -27,6 +27,6 @@ class AuthService {
 
   Future AuthDataSave(Map<String, dynamic> data, BuildContext ctx) async {
     await db.collection('users').doc().set(data);
-    Navigator.push(ctx, MaterialPageRoute(builder: (_) => HomePage()));
+    Navigator.push(ctx, MaterialPageRoute(builder: (_) => NoteHomePage()));
   }
 }

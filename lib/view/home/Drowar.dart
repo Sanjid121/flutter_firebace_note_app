@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_firebace1/DatabaseService/authService.dart';
 import 'package:flutter_firebace1/controller/authController.dart';
 import 'package:flutter_firebace1/view/widgets/widget.dart';
 import 'package:get/get.dart';
@@ -10,6 +11,8 @@ class Drowar extends StatefulWidget {
   @override
   _DrowarState createState() => _DrowarState();
 }
+
+Authcontroller nct = Authcontroller();
 
 class _DrowarState extends State<Drowar> {
   @override
@@ -36,12 +39,17 @@ class _DrowarState extends State<Drowar> {
                     radius: 40,
                     backgroundImage: AssetImage('assets/sanjid15.png'),
                   ),
-                text('MD:Sanjid', 24, FontWeight.w400, 0xFFFFFFFF),
-                  Text(
-                    'gamarsanged@gmail.com',
-                    style: TextStyle(
-                      color: Colors.white70,
-                      fontSize: 13,
+                  text('MD:Sanjid', 24, FontWeight.w400, 0xFFFFFFFF),
+                  Container(
+                    height: 20,
+                    width: 50,
+                    child: Text(
+                   
+                      ''   ,
+                      style: TextStyle(
+                        color: Colors.white70,
+                        fontSize: 10,
+                      ),
                     ),
                   ),
                 ],

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_firebace1/controller/note_controlar.dart';
+import 'package:flutter_firebace1/view/widgets/widget.dart';
 import 'package:get/get.dart';
 
 class AddNote extends StatefulWidget {
@@ -9,6 +10,7 @@ class AddNote extends StatefulWidget {
   @override
   _AddNoteState createState() => _AddNoteState();
 }
+
 Color pickerColor = Color(0xff443a49);
 
 Color currentColor = Color(0xff443a49);
@@ -16,9 +18,10 @@ Color currentColor = Color(0xff443a49);
 final nctr = Get.find<NoteControlar>();
 
 class _AddNoteState extends State<AddNote> {
-    void changeColor(Color color) {
+  void changeColor(Color color) {
     setState(() => pickerColor = color);
   }
+
   @override
   @override
   Widget build(BuildContext context) {
@@ -86,13 +89,10 @@ class _AddNoteState extends State<AddNote> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(right: 100),
-            child: FloatingActionButton(
-              backgroundColor: Color.fromARGB(255, 226, 230, 5),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(100)),
-              onPressed: () async {
-                showDialog(
+              padding: const EdgeInsets.only(right: 100),
+              child: GestureDetector(
+                onTap: () {
+                  showDialog(
                     context: context,
                     builder: (BuildContext context) {
                       return AlertDialog(
@@ -139,15 +139,16 @@ class _AddNoteState extends State<AddNote> {
                         ],
                       );
                     });
-              },
-              elevation: 10,
-              child: Icon(
-                Icons.color_lens_rounded,
-                size: 30,
-                color: Colors.white70,
-              ),
-            ),
-          ),
+                },
+                child: Container(
+                  height:55,
+                  width: 55,
+                  decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(100)),
+                      child: Image.asset('assets/color_pic_icon.png')
+                ),
+              )),
         ],
       ),
     );
